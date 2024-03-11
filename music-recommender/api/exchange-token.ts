@@ -4,12 +4,13 @@ import fetch from 'node-fetch';
 import { stringify } from 'querystring';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+  console.log("starting exchange-token")
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  const { code } = req.body as { code?: string };
+  const { code } = req.body;
 
   if (!code) {
     return res.status(400).send({ error: 'Code is required' });
