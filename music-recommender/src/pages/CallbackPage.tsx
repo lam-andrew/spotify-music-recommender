@@ -3,11 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const CallbackPage = () => {
   const navigate = useNavigate();
-  console.log("CALLBACK PAGE")
   useEffect(() => {
     // Extract the code from URL query parameters
     const code = new URLSearchParams(window.location.search).get('code');
-    console.log("GOT CODE: ", code)
     if (code) {
       exchangeCodeForToken(code);
     } else {
@@ -18,8 +16,7 @@ const CallbackPage = () => {
 
   const exchangeCodeForToken = async (code: string) => {
     try {
-      console.log("CALLING EXCHANGE-TOKEN")
-      const response = await fetch('/api/exchange-token', {
+      const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/exchange-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,6 +27,7 @@ const CallbackPage = () => {
       const data = await response.json();
 
       if (data.access_token) {
+        console.log('DATA HAS ACCESS TOKEN')
         // Save the access token for later use in API requests
         localStorage.setItem('spotifyAccessToken', data.access_token);
         
