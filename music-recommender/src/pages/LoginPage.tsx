@@ -7,7 +7,6 @@ const LoginPage = () => {
   // The URI to redirect to after the user grants or denies permission
   // This must be registered in your Spotify application settings on the Spotify Dashboard
   const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI
-
   if (!clientId || !redirectUri) {
     console.error(
       'Spotify client ID or redirect URI is undefined. Check environment variables.',
@@ -31,7 +30,6 @@ const LoginPage = () => {
       redirect_uri: redirectUri ?? '', // Ensure redirectUri is a string
       scope: scopes.join(' '),
     }).toString()
-
     return `https://accounts.spotify.com/authorize?${queryParams}`
   }
 

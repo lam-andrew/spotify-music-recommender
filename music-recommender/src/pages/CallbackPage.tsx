@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 const CallbackPage = () => {
   const navigate = useNavigate();
-
+  console.log("CALLBACK PAGE")
   useEffect(() => {
     // Extract the code from URL query parameters
     const code = new URLSearchParams(window.location.search).get('code');
-    
+    console.log("GOT CODE: ", code)
     if (code) {
       exchangeCodeForToken(code);
     } else {
@@ -18,6 +18,7 @@ const CallbackPage = () => {
 
   const exchangeCodeForToken = async (code: string) => {
     try {
+      console.log("CALLING EXCHANGE-TOKEN")
       const response = await fetch('/api/exchange-token', {
         method: 'POST',
         headers: {
@@ -43,7 +44,7 @@ const CallbackPage = () => {
     }
   };
 
-  return <div>Processing...</div>;
+  return <div>Processing.....</div>;
 };
 
 export default CallbackPage;
