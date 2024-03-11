@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 
 export default async (req: VercelRequest, res: VercelResponse) => {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*') // Adjust this to be more restrictive if necessary
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
