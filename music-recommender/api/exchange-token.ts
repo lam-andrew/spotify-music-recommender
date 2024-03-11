@@ -35,6 +35,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
   try {
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
+    console.log("REQUESTING ACCESS TOKEN EXCHANGE")
     if (response.ok && response.headers.get('Content-Type')?.includes('application/json')) {
         console.log("RESPONSE OK")
         const data = await response.json();
