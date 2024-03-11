@@ -20,7 +20,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return
   }
 
-  const spotifyApiKey = process.env.SPOTIFY_API_KEY // Ensure this variable is set in your Vercel project settings
+  const accessToken = localStorage.getItem('spotifyAccessToken');
   const endpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     searchQuery as string,
   )}&type=track,artist`
@@ -28,7 +28,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   try {
     const spotifyResponse = await fetch(endpoint, {
       headers: {
-        Authorization: `Bearer ${spotifyApiKey}`,
+        Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
     })

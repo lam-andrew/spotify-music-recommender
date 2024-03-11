@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
+import CallbackPage from './pages/CallbackPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         {/* Set HomePage as the default by associating it with the root path */}
         <Route path="/" element={<LoginPage />} />
+        <Route path="/callback" element={<CallbackPage />} />
         <Route path="/homepage" element={<HomePage />} />
         {/* Catch-all route for 404 Not Found pages */}
         <Route path="*" element={<NotFoundPage />} />
