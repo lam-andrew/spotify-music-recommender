@@ -23,7 +23,7 @@ const CallbackPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(code),
+        body: code,
       });
 
       const data = await response.json();
