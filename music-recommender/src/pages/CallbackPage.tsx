@@ -16,12 +16,14 @@ const CallbackPage = () => {
 
   const exchangeCodeForToken = async (code: string) => {
     try {
+      console.log("CODE: ", code)
+      console.log("STRINGIGY CODE: ", JSON.stringify(code))
       const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/exchange-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ code }),
+        body: JSON.stringify(code),
       });
 
       const data = await response.json();
