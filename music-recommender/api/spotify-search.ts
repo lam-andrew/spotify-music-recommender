@@ -3,6 +3,16 @@ import { VercelRequest, VercelResponse } from '@vercel/node'
 import fetch from 'node-fetch'
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*') // Adjust this to be more restrictive if necessary
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+
+  // Handle OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end()
+  }
+
   const { searchQuery } = req.query
 
   if (!searchQuery) {
