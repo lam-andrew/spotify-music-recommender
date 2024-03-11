@@ -2,6 +2,9 @@
 This is my Music Recommender Application that implements the Spotify API. 
 This application is designed to integrate with `vercel`, a web hosting service.
 
+### Linting
+Run `npx prettier --write .`
+
 ### Vercel Integration
 - Vercel is a service that focuses on providing easy deployment of static/front-end based applications
 - On that note, Vercel does not heavily support server or backend deployment

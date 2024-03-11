@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<string[]>([]); // Specify the array type if known, e.g., string[]
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<string[]>([]) // Specify the array type if known, e.g., string[]
 
   // Use React.ChangeEvent<HTMLInputElement> for input change events
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
+    setSearchQuery(event.target.value)
+  }
 
-  // Use React.FormEvent<HTMLFormElement> for form submission events
-  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent the form from submitting in the traditional way
-    console.log('Searching for:', searchQuery);
-    // Simulate setting search results; in a real app, this might be where you make an API call
-    setSearchResults([searchQuery]);
-  };
+  const handleSearchSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault() // Prevent the form from submitting in the traditional way
+    console.log('Searching for:', searchQuery)
+
+    // Call the serverless function
+    try {
+      const vercel_response = await fetch(
+        `https://your-vercel-project-url.vercel.app/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
+      )
+      const response = await fetch(
+        `/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
+      )
+      const data = await response.json()
+      // Assuming the Spotify API response structure, adjust as needed
+      const tracks = data.tracks.items.map((item: any) => item.name)
+      setSearchResults(tracks)
+    } catch (error) {
+      console.error('Search API call failed:', error)
+      setSearchResults([])
+    }
+  }
 
   return (
     <div>
@@ -45,7 +61,7 @@ const HomePage = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
