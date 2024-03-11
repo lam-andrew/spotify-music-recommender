@@ -15,7 +15,7 @@ const CallbackPage = () => {
       // Redirect to the homepage or wherever is appropriate after successful login
       navigate('/homepage');
     }
-  }, [location, history]);
+  }, [location]);
 
   return <div>Redirecting...</div>;
 };
