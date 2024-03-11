@@ -1,23 +1,49 @@
-import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CallbackPage = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const accessToken = new URLSearchParams(location.search).get('code')
-
-    if (accessToken) {
-      // Save the access token in local storage, a context, or wherever suits your app's architecture
-      localStorage.setItem('spotifyAccessToken', accessToken)
-
-      // Redirect to the homepage or wherever is appropriate after successful login
-      navigate('/homepage')
+    // Extract the code from URL query parameters
+    const code = new URLSearchParams(window.location.search).get('code');
+    
+    if (code) {
+      exchangeCodeForToken(code);
+    } else {
+      // Handle error or missing code
+      navigate('/error'); // Redirect to an error page or home
     }
-  }, [location])
+  }, [navigate]);
 
-  return <div>Redirecting...</div>
-}
+  const exchangeCodeForToken = async (code: string) => {
+    try {
+      const response = await fetch('/api/exchange-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      });
 
-export default CallbackPage
+      const data = await response.json();
+
+      if (data.access_token) {
+        // Save the access token for later use in API requests
+        localStorage.setItem('spotifyAccessToken', data.access_token);
+        
+        navigate('/homepage'); // Redirect to homepage or another route after successful login
+      } else {
+        console.error('Token exchange failed:', data);
+        navigate('/error'); // Redirect to an error page or home
+      }
+    } catch (error) {
+      console.error('Error exchanging code for token:', error);
+      navigate('/error'); // Redirect to an error page or home
+    }
+  };
+
+  return <div>Processing...</div>;
+};
+
+export default CallbackPage;

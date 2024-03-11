@@ -2,11 +2,11 @@ import React from 'react'
 
 const LoginPage = () => {
   // Your Spotify Application's Client ID
-  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
+  const clientId = process.env.SPOTIFY_CLIENT_ID
 
   // The URI to redirect to after the user grants or denies permission
   // This must be registered in your Spotify application settings on the Spotify Dashboard
-  const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI
+  const redirectUri = process.env.SPOTIFY_REDIRECT_URI
 
   if (!clientId || !redirectUri) {
     console.error(
