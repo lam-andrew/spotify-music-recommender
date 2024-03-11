@@ -20,7 +20,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return
   }
 
-  const accessToken = localStorage.getItem('spotifyAccessToken');
+  const accessToken = localStorage.getItem('spotifyAccessToken')
   const endpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     searchQuery as string,
   )}&type=track,artist`

@@ -20,9 +20,9 @@ const HomePage = () => {
       const vercel_response = await fetch(
         `https://spotify-music-recommender-al.vercel.app/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
       )
-    //   const response = await fetch(
-    //     `/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
-    //   )
+      //   const response = await fetch(
+      //     `/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
+      //   )
       const data = await vercel_response.json()
       // Assuming the Spotify API response structure, adjust as needed
       const tracks = data.tracks.items.map((item: any) => item.name)
