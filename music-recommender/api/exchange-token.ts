@@ -2,7 +2,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
 import { stringify } from 'querystring';
-
+console.log("starting exchange-token api")
 export default async (req: VercelRequest, res: VercelResponse) => {
   console.log("starting exchange-token")
   // Set CORS headers
@@ -36,6 +36,9 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   try {
     console.log("BEFORE REQUESTING ACCESS TOKEN EXCHANGE")
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
+    const responseBody = await response.text(); // Read response body as text
+    console.log('Response Body:', responseBody);
+    
     console.log("REQUESTING ACCESS TOKEN EXCHANGE")
     if (response.ok && response.headers.get('Content-Type')?.includes('application/json')) {
         console.log("RESPONSE OK")

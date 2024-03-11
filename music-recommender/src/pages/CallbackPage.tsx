@@ -38,7 +38,7 @@ const CallbackPage = () => {
       }
     } catch (error) {
       console.error('Error exchanging code for token:', error);
-      navigate('/error'); // Redirect to an error page or home
+      navigate('/'); // Redirect to an error page or home
     }
   };
 
