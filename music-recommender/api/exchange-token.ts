@@ -16,44 +16,32 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return res.status(400).send({ error: 'Code is required' });
   }
 
-  const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-  const redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
   console.log("EARLY ON")
   const authOptions = {
     method: 'POST',
     headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'Authorization': `Basic ${Buffer.from(`${client_id}:${client_secret}`).toString('base64')}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
     },
     body: stringify({
-      code,
-      redirect_uri,
+      code: code,
+      redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
       grant_type: 'authorization_code',
     }),
   };
 
   try {
-    console.log("BEFORE REQUESTING ACCESS TOKEN EXCHANGE")
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
-    const responseBody = await response.text(); // Read response body as text
-    console.log('Response Body:', responseBody);
-    
-    console.log("REQUESTING ACCESS TOKEN EXCHANGE")
-    if (response.ok && response.headers.get('Content-Type')?.includes('application/json')) {
-        console.log("RESPONSE OK")
-        const data = await response.json();
-        if (data.error) {
-          return res.status(400).json({ error: data.error });
-        }
-        return res.status(200).json(data);
-    } else {
-        // Not a successful response, or not JSON
-        const text = await response.text(); // Read response body as text
-        console.error('Unexpected response:', text);
+
+    if (!response.ok) {
+      console.error('Spotify API response error:', await response.text());
+      return null; // Handle non-OK responses
     }
+
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('Error exchanging code for token:', error);
-    return res.status(500).send('Internal Server Error');
+    return null;
   }
 };
