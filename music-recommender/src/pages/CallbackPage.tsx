@@ -16,12 +16,29 @@ const CallbackPage = () => {
 
   const exchangeCodeForToken = async (code: string) => {
     try {
+      const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/hello', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( code ),
+      });
+      console.log("TESTTT")
+      console.log("RESPONSE", response)
+      const data = await response.json();
+      console.log("HELLO DATA RECEIVED", data)
+
+    } catch (error) {
+      console.error('Error calling hello vercel serverless function:', error);
+      navigate('/'); // Redirect to an error page or home
+    }
+    try {
       const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/exchange-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ code: code }),
+        body: JSON.stringify( code ),
       });
       console.log("TESTTT")
       console.log("RESPONSE", response)
