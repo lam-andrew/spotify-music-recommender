@@ -23,6 +23,7 @@ const CallbackPage = () => {
         },
         body: JSON.stringify({ code }),
       });
+      console.log("TESTTT")
       console.log("RESPONSE", response)
       const data = await response.json();
       console.log("EXCHANGE-TOKEN COMPLETED AND RESPONSE RECEIVED")
