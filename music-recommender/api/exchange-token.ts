@@ -31,16 +31,17 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
   try {
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
-
+  
     if (!response.ok) {
-      console.error('Spotify API response error:', await response.text());
-      return null; // Handle non-OK responses
+      const errorText = await response.text();
+      console.error('Spotify API response error:', errorText);
+      return res.status(500).send('Error from Spotify API');
     }
-
+  
     const data = await response.json();
-    return data;
+    res.status(200).json(data); // Correctly sending JSON response back
   } catch (error) {
     console.error('Error exchanging code for token:', error);
-    return null;
+    res.status(500).send('Internal Server Error'); // Correctly sending error response back
   }
 };

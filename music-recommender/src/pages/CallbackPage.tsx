@@ -21,10 +21,11 @@ const CallbackPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(code),
+        body: JSON.stringify({ code }),
       });
       console.log("RESPONSE", response)
       const data = await response.json();
+      console.log("EXCHANGE-TOKEN COMPLETED AND RESPONSE RECEIVED")
 
       if (data.access_token) {
         console.log('DATA HAS ACCESS TOKEN')
