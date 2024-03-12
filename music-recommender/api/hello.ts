@@ -1,7 +1,8 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+// /api/hello.ts
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const handler = (req: VercelRequest, res: VercelResponse): void => {
+const handler = (req: VercelRequest, res: VercelResponse) => {
   res.status(200).json({ message: 'Hello from Vercel!' });
 };
 
-export default handler;
+module.exports = handler;
