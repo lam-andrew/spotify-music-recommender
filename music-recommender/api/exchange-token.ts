@@ -2,16 +2,15 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
 import { stringify } from 'querystring';
-console.log("starting exchange-token api")
+
 export default async (req: VercelRequest, res: VercelResponse) => {
-  console.log("starting exchange-token")
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  const { code } = req.body;
-
+  const code = req.body;
+  console.log("starting exchange-token")
   if (!code) {
     return res.status(400).send({ error: 'Code is required' });
   }
@@ -23,7 +22,6 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
     },
-    json:true,
     body: stringify({
       code: code,
       redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
