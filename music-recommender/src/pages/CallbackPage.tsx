@@ -24,9 +24,6 @@ const CallbackPage = () => {
         body: JSON.stringify(code),
       });
       console.log("RESPONSE", response)
-      console.log("RESPONSE.JSON", response.json)
-      console.log("RESPONSE.STATUS", response.status)
-      console.log("RESPONSE.TEXT", response.text)
       const data = await response.json();
 
       if (data.access_token) {
