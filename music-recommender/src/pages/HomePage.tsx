@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<string[]>([]) // Specify the array type if known, e.g., string[]
+  const accessToken = localStorage.getItem('spotifyAccessToken');
 
   // Use React.ChangeEvent<HTMLInputElement> for input change events
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,8 +19,11 @@ const HomePage = () => {
     // Call the serverless function
     try {
       const vercel_response = await fetch(
-        `https://spotify-music-recommender-al.vercel.app/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`,
-      )
+        `https://spotify-music-recommender-al.vercel.app/api/spotify-search?searchQuery=${encodeURIComponent(searchQuery)}`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+      })
       const data = await vercel_response.json()
       // Assuming the Spotify API response structure, adjust as needed
       const tracks = data.tracks.items.map((item: any) => item.name)
