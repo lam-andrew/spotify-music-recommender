@@ -35,26 +35,29 @@ const HomePage = () => {
   }
 
   return (
-    <div>
-      <h1>Welcome to Spotify Music Recommender</h1>
-      <p>This is the Home Page of Spotify Music Recommender</p>
+    <div className="min-h-screen bg-black text-white p-8">
+      <h1 className="text-4xl font-bold mb-4">Welcome to Spotify Music Recommender</h1>
+      <p className="mb-8">This is the Home Page of Spotify Music Recommender</p>
       {/* Search Form */}
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center mb-8">
         <input
           type="text"
           value={searchQuery}
           onChange={handleSearchChange}
           placeholder="Search for a song..."
+          className="p-2 w-full sm:w-1/2 rounded-md text-black"
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out">
+          Search
+        </button>
       </form>
       {/* Container for Search Results */}
       <div>
-        <h2>Search Results</h2>
+        <h2 className="text-2xl font-bold mb-2">Search Results</h2>
         {searchResults.length > 0 ? (
-          <ul>
+          <ul className="list-disc list-inside">
             {searchResults.map((result, index) => (
-              <li key={index}>{result}</li> // Key can be index since search results may not have a unique identifier
+              <li key={index} className="mb-1">{result}</li> // Key can be index since search results may not have a unique identifier
             ))}
           </ul>
         ) : (
@@ -62,7 +65,8 @@ const HomePage = () => {
         )}
       </div>
     </div>
-  )
+  );
+  
 }
 
 export default HomePage

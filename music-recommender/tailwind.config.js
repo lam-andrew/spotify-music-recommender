@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  // For Tailwind CSS v2.2+
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {
       colors: {
