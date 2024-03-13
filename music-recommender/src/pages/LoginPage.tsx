@@ -34,13 +34,17 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
-      <h1 className='text-red bg-black'>Login to Spotify</h1>
-      <a href={getSpotifyAuthUrl()} className="loginButton">
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center text-white">
+      <h1 className="text-4xl font-bold mb-8">Login to Spotify Music Recommender</h1>
+      <a
+        href={getSpotifyAuthUrl()}
+        className="loginButton bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out"
+        style={{ backgroundColor: '#1DB954' }}
+      >
         Login with Spotify
       </a>
     </div>
-  )
+  );  
 }
 
 export default LoginPage
