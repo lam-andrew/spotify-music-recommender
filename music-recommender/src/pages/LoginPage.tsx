@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1 className='text-red'>Login to Spotify</h1>
+      <h1 className='text-red bg-black'>Login to Spotify</h1>
       <a href={getSpotifyAuthUrl()} className="loginButton">
         Login with Spotify
       </a>
