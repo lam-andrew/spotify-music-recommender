@@ -15,16 +15,16 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   }
 
   console.log("starting exchange-token")
-  console.log(process.env.SPOTIFY_CLIENT_ID)
+  console.log(process.env.REACT_APP_SPOTIFY_CLIENT_ID)
   const authOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
+      'Authorization': `Basic ${Buffer.from(`${process.env.REACT_APP_SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
     },
     body: stringify({
       code: code,
-      redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
+      redirect_uri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
       grant_type: 'authorization_code',
     }),
   };
