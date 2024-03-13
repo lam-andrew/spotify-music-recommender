@@ -10,12 +10,12 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
   const code = req.body;
-  console.log("starting exchange-token")
   if (!code) {
     return res.status(400).send({ error: 'Code is required' });
   }
 
-  console.log("EARLY ON")
+  console.log("starting exchange-token")
+  console.log(process.env.SPOTIFY_CLIENT_ID)
   const authOptions = {
     method: 'POST',
     headers: {
@@ -28,7 +28,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       grant_type: 'authorization_code',
     }),
   };
-
+  console.log("TRYING SPOTIFY TOKEN CALL")
   try {
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
   
