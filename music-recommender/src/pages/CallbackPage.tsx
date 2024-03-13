@@ -1,67 +1,67 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const CallbackPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
     // Extract the code from URL query parameters
-    const code = new URLSearchParams(window.location.search).get('code');
+    const code = new URLSearchParams(window.location.search).get('code')
     if (code) {
-      exchangeCodeForToken(code);
+      exchangeCodeForToken(code)
     } else {
       // Handle error or missing code
-      navigate('/error'); // Redirect to an error page or home
+      navigate('/error') // Redirect to an error page or home
     }
-  }, [navigate]);
+  }, [navigate])
 
   const exchangeCodeForToken = async (code: string) => {
     try {
-      const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/hello', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://spotify-music-recommender-al.vercel.app/api/hello',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(code),
         },
-        body: JSON.stringify( code ),
-      });
-      console.log("TESTTT")
-      console.log("RESPONSE", response)
-      const data = await response.json();
-      console.log("HELLO DATA RECEIVED", data)
-
+      )
+      const data = await response.json()
     } catch (error) {
-      console.error('Error calling hello vercel serverless function:', error);
-      navigate('/'); // Redirect to an error page or home
+      console.error('Error calling hello vercel serverless function:', error)
+      navigate('/') // Redirect to an error page or home
     }
     try {
-      const response = await fetch('https://spotify-music-recommender-al.vercel.app/api/exchange-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://spotify-music-recommender-al.vercel.app/api/exchange-token',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(code),
         },
-        body: JSON.stringify( code ),
-      });
-      console.log("TESTTT")
-      console.log("RESPONSE", response)
-      const data = await response.json();
-      console.log("EXCHANGE-TOKEN COMPLETED AND RESPONSE RECEIVED")
+      )
+      const data = await response.json()
+      console.log('EXCHANGE-TOKEN COMPLETED AND RESPONSE RECEIVED', data)
 
       if (data.access_token) {
-        console.log('DATA HAS ACCESS TOKEN')
+        console.log('DATA HAS ACCESS TOKEN', data.access_token)
         // Save the access token for later use in API requests
-        localStorage.setItem('spotifyAccessToken', data.access_token);
-        
-        navigate('/homepage'); // Redirect to homepage or another route after successful login
+        localStorage.setItem('spotifyAccessToken', data.access_token)
+
+        navigate('/homepage') // Redirect to homepage or another route after successful login
       } else {
-        console.error('Token exchange failed:', data);
-        navigate('/error'); // Redirect to an error page or home
+        console.error('Token exchange failed:', data)
+        navigate('/error') // Redirect to an error page or home
       }
     } catch (error) {
-      console.error('Error exchanging code for token:', error);
-      navigate('/'); // Redirect to an error page or home
+      console.error('Error exchanging code for token:', error)
+      navigate('/') // Redirect to an error page or home
     }
-  };
+  }
 
-  return <div>Processing.....</div>;
-};
+  return <div>Processing.....</div>
+}
 
-export default CallbackPage;
+export default CallbackPage
