@@ -17,22 +17,6 @@ const CallbackPage = () => {
   const exchangeCodeForToken = async (code: string) => {
     try {
       const response = await fetch(
-        'https://spotify-music-recommender-al.vercel.app/api/hello',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(code),
-        },
-      )
-      const data = await response.json()
-    } catch (error) {
-      console.error('Error calling hello vercel serverless function:', error)
-      navigate('/') // Redirect to an error page or home
-    }
-    try {
-      const response = await fetch(
         'https://spotify-music-recommender-al.vercel.app/api/exchange-token',
         {
           method: 'POST',
@@ -43,10 +27,8 @@ const CallbackPage = () => {
         },
       )
       const data = await response.json()
-      console.log('EXCHANGE-TOKEN COMPLETED AND RESPONSE RECEIVED', data)
 
       if (data.access_token) {
-        console.log('DATA HAS ACCESS TOKEN', data.access_token)
         // Save the access token for later use in API requests
         localStorage.setItem('spotifyAccessToken', data.access_token)
 
