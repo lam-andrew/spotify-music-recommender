@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
 import CallbackPage from './pages/CallbackPage'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="/homepage" element={<HomePage />} />
+        <Route path="/profilepage" element={<ProfilePage />} />
         {/* Catch-all route for 404 Not Found pages */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
