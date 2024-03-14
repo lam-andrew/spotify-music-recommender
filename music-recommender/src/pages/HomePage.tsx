@@ -40,14 +40,14 @@ const HomePage = () => {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
-        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg">
           <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search for a song..."
-              className="p-2 w-full rounded-md"
+              className="p-2 w-full rounded-md text-black"
             />
             <button
               type="submit"
@@ -69,8 +69,8 @@ const HomePage = () => {
             </button>
           </form>
         </div>
-        <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
-          <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+        <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+        <div className="mt-8 bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
           {searchResults.length > 0 ? (
             <ul className="list-disc list-inside">
               {searchResults.map((result, index) => (
