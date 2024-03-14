@@ -85,7 +85,7 @@ const HomePage = () => {
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
-                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow">
+                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow flex flex-col items-center text-center">
                   {track.album.images[0] && (
                     <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4 flex justify-center" />
                   )}
