@@ -22,7 +22,7 @@ const App = () => {
   return (
     <>
       {/* Conditionally render NavigationBar */}
-      {location.pathname !== '/' && <NavigationBar />}
+      {location.pathname !== '/' && location.pathname !== '/callback' && <NavigationBar />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/callback" element={<CallbackPage />} />

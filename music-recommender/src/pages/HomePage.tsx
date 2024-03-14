@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
 
+interface TrackObject {
+  album: {
+    images: Array<{ url: string; height?: number; width?: number }>;
+    name: string;
+  };
+  artists: Array<{ name: string }>;
+  name: string;
+  preview_url: string | null;
+}
+
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<string[]>([]) // Specify the array type if known, e.g., string[]
+  const [searchResults, setSearchResults] = useState<TrackObject[]>([]);
   const accessToken = localStorage.getItem('spotifyAccessToken');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,8 +35,9 @@ const HomePage = () => {
           },
         });
       const data = await vercel_response.json();
-      const tracks = data.tracks.items.map((item: any) => item.name);
-      setSearchResults(tracks);
+  
+      // Store the entire item object or extract only the parts you need
+      setSearchResults(data.tracks.items);
     } catch (error) {
       console.error('Search API call failed:', error);
       setSearchResults([]);
@@ -34,56 +45,46 @@ const HomePage = () => {
       setIsLoading(false); // Stop loading regardless of success or failure
     }
   };
+  
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 to-zinc-900 text-white p-8 flex justify-center items-center">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Welcome to Spotify Music Recommender</h1>
-        <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg">
-          <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder="Search for a song..."
-              className="p-2 w-full rounded-md text-black"
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center bg-spotify-green hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24">
-                    {/* Spinner SVG path */}
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Searching...
-                </>
-              ) : (
-                "Search"
-              )}
-            </button>
-          </form>
-        </div>
-        <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
-          {searchResults.length > 0 ? (
-            <ul className="list-disc list-inside">
-              {searchResults.map((result, index) => (
-                <li key={index} className="mb-1">{result}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No results to display</p>
-          )}
-        </div>
+  // Assume the rest of your HomePage component remains the same up to the return statement
+
+return (
+  <div className="min-h-screen bg-gradient-to-br from-green-900 to-zinc-900 text-white p-8 flex flex-col items-center justify-center">
+    <div className="max-w-4xl w-full">
+      <h1 className="text-4xl font-bold mb-6 text-center">Welcome to Spotify Music Recommender</h1>
+      <p className="mb-8 text-lg text-center">Discover music tailored to your taste.</p>
+      {/* Search Form remains the same */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Search Results</h2>
+        {searchResults.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {searchResults.map((result, index) => (
+              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-col items-center">
+                {result.album.images.length > 0 && (
+                  <img src={result.album.images[0].url} alt="Album Cover" className="w-32 h-32 rounded-full mb-4" />
+                )}
+                <div className="text-center">
+                  <h3 className="text-lg font-bold">{result.name}</h3>
+                  <p>{result.artists.map(artist => artist.name).join(', ')}</p>
+                  <p className="text-sm">{result.album.name}</p>
+                  {result.preview_url && (
+                    <audio controls src={result.preview_url}>
+                      Your browser does not support the audio element.
+                    </audio>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No results to display</p>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default HomePage
