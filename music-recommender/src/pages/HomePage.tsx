@@ -49,7 +49,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
-      <div className="max-w-4xl mx-auto items-center justify-center">
+      <div className="max-w-4xl mx-auto flex items-center justify-center">
         <h1 className="text-4xl font-bold mb-6 text-spotify-green">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
         <div className="bg-zinc-800 p-6 rounded-lg shadow-lg">
