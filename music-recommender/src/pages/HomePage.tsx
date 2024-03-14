@@ -48,27 +48,27 @@ const HomePage = () => {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 to-zinc-900 text-white p-8 flex justify-center items-center">
+    <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Welcome to Spotify Music Recommender</h1>
+        <h1 className="text-4xl font-bold mb-6 text-spotify-green">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg">
+        <div className="bg-zinc-800 p-6 rounded-lg shadow-lg">
           <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search for a song..."
-              className="p-2 w-full rounded-md text-black"
+              className="p-2 w-full rounded-md"
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center bg-spotify-green hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="inline-flex items-center justify-center bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg"
               disabled={isLoading}
             >
               {isLoading ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -80,16 +80,16 @@ const HomePage = () => {
             </button>
           </form>
         </div>
-        <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
+        <h2 className="mt-8 text-2xl font-bold mb-2 text-spotify-green">Search Results</h2>
+        <div className="bg-zinc-800 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
-                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow flex flex-col items-center text-center">
+                <div key={index} className="bg-black p-4 rounded-lg shadow flex flex-col items-center text-center">
                   {track.album.images[0] && (
-                    <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4 flex justify-center" />
+                    <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4" />
                   )}
-                  <h3 className="text-lg font-bold">{track.name}</h3>
+                  <h3 className="text-lg font-bold text-spotify-green">{track.name}</h3>
                   <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
                   <p>Album: {track.album.name}</p>
                   {track.preview_url && (
