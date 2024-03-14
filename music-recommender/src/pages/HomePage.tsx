@@ -48,7 +48,7 @@ const HomePage = () => {
   
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-black text-white p-8 items-center justify-center">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-spotify-green">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
@@ -59,7 +59,7 @@ const HomePage = () => {
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search for a song..."
-              className="p-2 w-full rounded-md"
+              className="p-2 w-full rounded-md text-black"
             />
             <button
               type="submit"
