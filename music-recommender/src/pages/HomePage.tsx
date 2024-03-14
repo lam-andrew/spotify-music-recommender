@@ -83,20 +83,22 @@ const HomePage = () => {
         <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
         <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
           {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-4">
               {searchResults.map((track, index) => (
-                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow">
+                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow flex flex-col items-center md:items-start">
                   {track.album.images[0] && (
-                    <img src={track.album.images[0].url} alt="Album cover" className="w-full h-auto mb-4" />
+                    <img src={track.album.images[0].url} alt="Album cover" className="w-32 h-32 mb-4" />
                   )}
-                  <h3 className="text-lg font-bold">{track.name}</h3>
-                  <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
-                  <p>Album: {track.album.name}</p>
-                  {track.preview_url && (
-                    <audio controls src={track.preview_url} className="mt-2">
-                      Your browser does not support the audio element.
-                    </audio>
-                  )}
+                  <div className="text-center md:text-left">
+                    <h3 className="text-lg font-bold">{track.name}</h3>
+                    <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
+                    <p>Album: {track.album.name}</p>
+                    {track.preview_url && (
+                      <audio controls src={track.preview_url} className="mt-2">
+                        Your browser does not support the audio element.
+                      </audio>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -107,6 +109,7 @@ const HomePage = () => {
       </div>
     </div>
   );
+  
   
 };
 
