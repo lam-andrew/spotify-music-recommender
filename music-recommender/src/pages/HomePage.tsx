@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
 interface TrackObject {
+  id: string;
   album: {
-    images: Array<{ url: string; height?: number; width?: number }>;
+    images: Array<{ url: string; height?: number | null; width?: number | null }>;
     name: string;
   };
   artists: Array<{ name: string }>;
   name: string;
   preview_url: string | null;
 }
+
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -43,6 +45,33 @@ const HomePage = () => {
       setSearchResults([]);
     } finally {
       setIsLoading(false); // Stop loading regardless of success or failure
+    }
+  };
+  
+  const handleTrackSelection = async (trackId: string) => {
+    setIsLoading(true);
+    try {
+      // Update the endpoint if necessary
+      const response = await fetch(`/api/get-recommendations?trackId=${trackId}`, {
+        method: 'GET', // Or 'POST', depending on how your serverless function is set up
+        headers: {
+          'Authorization': `Bearer ${accessToken}`, // Assuming accessToken is stored and accessible
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch recommendations');
+      }
+      const recommendations = await response.json();
+  
+      // Process the recommendations as needed, e.g., updating state or displaying them
+      console.log(recommendations); // Placeholder for actual processing
+      // You might want to update a piece of state to hold these recommendations
+      // and then map over that state to display them similarly to the search results
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -81,22 +110,28 @@ const HomePage = () => {
           </form>
         </div>
         <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
+        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg overflow-auto">
           {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {searchResults.map((track, index) => (
-                <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow">
-                  {track.album.images[0] && (
-                    <img src={track.album.images[0].url} alt="Album cover" className="w-1/2 h-auto mb-4" />
-                  )}
-                  <h3 className="text-lg font-bold">{track.name}</h3>
-                  <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
-                  <p>Album: {track.album.name}</p>
-                  {track.preview_url && (
-                    <audio controls src={track.preview_url} className="mt-2">
-                      Your browser does not support the audio element.
-                    </audio>
-                  )}
+                <div 
+                  key={index} 
+                  className="bg-zinc-800 p-4 rounded-lg shadow hover:bg-zinc-700 cursor-pointer transition duration-150 ease-in-out"
+                  onClick={() => handleTrackSelection(track.id)}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    {track.album.images[0] && (
+                      <img src={track.album.images[0].url} alt="Album cover" className="w-full h-auto mb-4" />
+                    )}
+                    <h3 className="text-lg font-bold">{track.name}</h3>
+                    <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
+                    <p>Album: {track.album.name}</p>
+                    {track.preview_url && (
+                      <audio controls src={track.preview_url} className="mt-2">
+                        Your browser does not support the audio element.
+                      </audio>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -107,6 +142,7 @@ const HomePage = () => {
       </div>
     </div>
   );
+  
   
 };
 
