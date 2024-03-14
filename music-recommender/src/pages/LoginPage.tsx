@@ -27,7 +27,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-green-900 to-black min-h-screen flex flex-col items-center justify-center text-white">
+    <div className="bg-gradient-to-br from-green-900 to-zinc-900 min-h-screen flex flex-col items-center justify-center text-white">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-6">Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>

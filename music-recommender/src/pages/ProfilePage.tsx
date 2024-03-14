@@ -57,19 +57,18 @@ const ProfilePage = () => {
   const profileImageUrl = userProfile.images.length > 0 ? userProfile.images[0].url : 'path/to/default/profile/image.jpg';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 to-black text-white flex justify-center items-center p-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-900 to-zinc-900 text-white flex justify-center items-center p-8">
       <div className="bg-zinc-900 p-6 rounded-lg shadow-lg w-full max-w-md">
         <div className="text-center">
           {userProfile.images.length > 0 && (
-            <img src={profileImageUrl} alt="Profile" className="mx-auto rounded-full" style={{ height: '150px', width: '150px' }} />
+            <img src={profileImageUrl} alt="Profile" className="mx-auto rounded-full" style={{ height: '300px', width: '300px' }} />
           )}
-          <h2 className="text-2xl font-bold mt-4">{userProfile.display_name}</h2>
+          <h2 className="text-2xl font-bold mt-4 mb-2">{userProfile.display_name}</h2>
           <p>{userProfile.email}</p>
           <p>Followers: {userProfile.followers.total}</p>
-          <p>ID: {userProfile.id}</p>
           <p>Country: {userProfile.country}</p>
-          <p>Product: {userProfile.product}</p>
-          <a href={userProfile.external_urls.spotify} className="text-spotify-green hover:underline">View on Spotify</a>
+          <p>Subscription: {userProfile.product}</p>
+          <a href={userProfile.external_urls.spotify} className="text-spotify-green hover:underline mt-2">View on Spotify</a>
         </div>
       </div>
     </div>
