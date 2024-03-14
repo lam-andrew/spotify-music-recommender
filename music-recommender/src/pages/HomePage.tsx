@@ -81,7 +81,7 @@ const HomePage = () => {
           </form>
         </div>
         <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-150 overflow-auto">
+        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg h-96 overflow-auto">
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
