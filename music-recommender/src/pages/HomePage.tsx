@@ -36,7 +36,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 to-black text-white p-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-900 to-zinc-900 text-white p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
@@ -69,8 +69,8 @@ const HomePage = () => {
             </button>
           </form>
         </div>
-        <h2 className="text-2xl font-bold mb-2">Search Results</h2>
-        <div className="mt-8 bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
+        <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
+        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
           {searchResults.length > 0 ? (
             <ul className="list-disc list-inside">
               {searchResults.map((result, index) => (
