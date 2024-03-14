@@ -81,13 +81,13 @@ const HomePage = () => {
           </form>
         </div>
         <h2 className="mt-8 text-2xl font-bold mb-2">Search Results</h2>
-        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg h-96 overflow-auto">
+        <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-h-96 overflow-auto">
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
                 <div key={index} className="bg-zinc-800 p-4 rounded-lg shadow">
                   {track.album.images[0] && (
-                    <img src={track.album.images[0].url} alt="Album cover" className="w-full h-auto mb-4" />
+                    <img src={track.album.images[0].url} alt="Album cover" className="w-1/2 h-auto mb-4" />
                   )}
                   <h3 className="text-lg font-bold">{track.name}</h3>
                   <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
