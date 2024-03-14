@@ -35,38 +35,41 @@ const HomePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-4xl font-bold mb-4">Welcome to Spotify Music Recommender</h1>
-      <p className="mb-8">This is the Home Page of Spotify Music Recommender</p>
-      {/* Search Form */}
-      <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center mb-8">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          placeholder="Search for a song..."
-          className="p-2 w-full sm:w-1/2 rounded-md text-black"
-        />
-        <button type="submit" className="bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out">
-          Search
-        </button>
-      </form>
-      {/* Container for Search Results */}
-      <div>
-        <h2 className="text-2xl font-bold mb-2">Search Results</h2>
-        {searchResults.length > 0 ? (
-          <ul className="list-disc list-inside">
-            {searchResults.map((result, index) => (
-              <li key={index} className="mb-1">{result}</li> // Key can be index since search results may not have a unique identifier
-            ))}
-          </ul>
-        ) : (
-          <p>No results to display</p>
-        )}
+    <div className="min-h-screen bg-gray-800 text-white p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-4">Welcome to Spotify Music Recommender</h1>
+        <p className="mb-8">This is the Home Page of Spotify Music Recommender</p>
+        {/* Search Form */}
+        <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
+          <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search for a song..."
+              className="p-2 w-full rounded-md text-black"
+            />
+            <button type="submit" className="bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out">
+              Search
+            </button>
+          </form>
+        </div>
+        {/* Container for Search Results */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+          {searchResults.length > 0 ? (
+            <ul className="list-disc list-inside pl-4">
+              {searchResults.map((result, index) => (
+                <li key={index} className="mb-1">{result}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No results to display</p>
+          )}
+        </div>
       </div>
     </div>
   );
-  
-}
+};
 
 export default HomePage
