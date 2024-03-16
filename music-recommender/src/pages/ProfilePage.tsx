@@ -57,7 +57,7 @@ const ProfilePage = () => {
   const profileImageUrl = userProfile.images.length > 0 ? userProfile.images[0].url : 'path/to/default/profile/image.jpg';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-800 to-zinc-950 text-white flex justify-center items-center p-8">
+    <div className="min-h-screen bg-gradient-to-br from-zinc-800 to-zinc-900 text-white flex justify-center items-center p-8">
       <div className="bg-zinc-900 p-6 rounded-lg shadow-lg w-full max-w-md">
         <div className="text-center">
           {userProfile.images.length > 0 && (
