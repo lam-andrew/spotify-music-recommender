@@ -20,7 +20,7 @@ const App = () => {
   const location = useLocation(); // Hook to get the current location
   
   return (
-    <>
+    <div className='font-sans'>
       {/* Conditionally render NavigationBar */}
       {location.pathname !== '/' && location.pathname !== '/callback' && <NavigationBar />}
       <Routes>
@@ -30,7 +30,8 @@ const App = () => {
         <Route path="/profilepage" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </div>
+      
   );
 };
 
