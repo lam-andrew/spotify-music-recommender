@@ -53,7 +53,7 @@ const HomePage = () => {
         <h1 className="text-4xl font-thin mb-6 text-light-blue">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
         <div className="bg-zinc-800 p-6 rounded-lg shadow-lg w-full">
-          <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
+          <form onSubmit={handleSearchSubmit} className="flex flex-col gap-5 items-center">
             <input
               type="text"
               value={searchQuery}
@@ -80,7 +80,7 @@ const HomePage = () => {
             </button>
           </form>
         </div>
-        <h2 className="mt-8 text-2xl font-bold mb-2 text-spotify-green">Search Results</h2>
+        <h2 className="mt-10 text-2xl font-thin mb-2 text-light-blue">Search Results</h2>
         <div className="bg-zinc-800 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
