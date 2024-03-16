@@ -48,7 +48,7 @@ const HomePage = () => {
   
 
   return (
-    <div className="min-h-screen bg-zinc-900 text-white flex justify-center items-center p-8">
+    <div className="min-h-screen bg-radial-gradient-center text-white flex justify-center items-center p-8">
       <div className="max-w-4xl mx-auto flex flex-col justify-center items-center" style={{ minHeight: '80vh' }}>
         <h1 className="text-4xl font-thin mb-6 text-light-blue">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
