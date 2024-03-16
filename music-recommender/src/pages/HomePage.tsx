@@ -48,7 +48,7 @@ const HomePage = () => {
   
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex justify-center items-center p-8">
+    <div className="min-h-screen bg-zinc-900 text-white flex justify-center items-center p-8">
       <div className="max-w-4xl mx-auto flex flex-col justify-center items-center" style={{ minHeight: '80vh' }}>
         <h1 className="text-4xl font-bold mb-6 text-spotify-green">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
@@ -85,7 +85,7 @@ const HomePage = () => {
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
-                <div key={index} className="bg-zinc-950 p-4 rounded-lg shadow flex flex-col items-center text-center">
+                <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-col items-center text-center">
                   {track.album.images[0] && (
                     <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4" />
                   )}
