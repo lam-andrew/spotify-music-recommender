@@ -50,7 +50,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-zinc-900 text-white flex justify-center items-center p-8">
       <div className="max-w-4xl mx-auto flex flex-col justify-center items-center" style={{ minHeight: '80vh' }}>
-        <h1 className="text-4xl font-bold mb-6 text-spotify-green">Welcome to Spotify Music Recommender</h1>
+        <h1 className="text-4xl font-thin mb-6 text-light-blue">Welcome to Spotify Music Recommender</h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
         <div className="bg-zinc-800 p-6 rounded-lg shadow-lg w-full">
           <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4 items-center">
@@ -63,7 +63,7 @@ const HomePage = () => {
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center bg-spotify-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg"
+              className="inline-flex items-center justify-center outline outline-light-orange bg-transparent hover:-translate-y-1 text-light-orange font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg"
               disabled={isLoading}
             >
               {isLoading ? (

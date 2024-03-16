@@ -6,6 +6,8 @@ module.exports = {
     extend: {
       colors: {
         'spotify-green': '#1DB954',
+        'light-blue': "#6BB9EF",
+        'light-orange': "#F19A58"
       },
       fontFamily: {
         sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
