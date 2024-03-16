@@ -14,7 +14,7 @@ module.exports = {
         mono: ['source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
       },
       backgroundImage: {
-        'radial-gradient-center': "radial-gradient(circle, #1f2937 0%, #374151 100%)",
+        'radial-gradient-center': "radial-gradient(circle, ##27272a 0%, ##18181b 100%)",
       },
     },
   },
