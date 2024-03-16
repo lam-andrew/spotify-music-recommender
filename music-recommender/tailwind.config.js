@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       colors: {
         'spotify-green': '#1DB954',
-        'light-blue': "#6BB9EF",
+        'light-blue': "#60A6EB",
         'light-orange': "#F19A58"
       },
       fontFamily: {
