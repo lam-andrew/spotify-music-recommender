@@ -163,17 +163,17 @@ const HomePage = () => {
             {searchResults.map((track, index) => (
               <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center my-2">
                 {track.album.images[0] && (
-                  <img src={track.album.images[0].url} alt="Album cover" className="w-1/4 h-auto mb-4" />
+                  <img src={track.album.images[0].url} alt="Album cover" className="w-1/6 h-auto mb-4 mr-4" />
                 )}
-                <div className='flex flex-col'>
+                <div className='flex flex-col mr-4'>
                   <h3 className="text-lg font-bold">{track.name}</h3>
                   <p>{track.artists.map(artist => artist.name).join(', ')}</p>
                 </div>
-                <div className='flex flex-col'>
-                  <p>Album: {track.album.name}</p>
+                <div className='flex flex-col mr-4'>
+                  <p>{track.album.name}</p>
                   <p>{track.album.release_date}</p>
                 </div>
-                <div className='flex flex-col'>
+                <div className='flex flex-col justify-center items-center mr-4'>
                   {track.preview_url && (
                     <audio controls src={track.preview_url} className="mt-2">
                       Your browser does not support the audio element.
