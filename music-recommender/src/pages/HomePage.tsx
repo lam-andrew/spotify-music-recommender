@@ -59,7 +59,7 @@ const HomePage = () => {
           Welcome to Spotify Music Recommender
         </h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
-        <div className="bg-zinc-800 p-6 rounded-lg shadow-lg w-full">
+        <div className="bg-zinc-700 p-6 rounded-lg shadow-lg w-full">
           <form
             onSubmit={handleSearchSubmit}
             className="flex flex-col gap-5 items-center"
@@ -73,7 +73,7 @@ const HomePage = () => {
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center outline outline-light-orange bg-transparent hover:-translate-y-1 text-light-orange font-bold py-2 px-4 rounded-full transition duration-150 ease-in-out shadow-lg"
+              className="inline-flex items-center justify-center outline outline-light-orange bg-transparent hover:-translate-y-1 text-light-orange font-bold py-2 px-4 rounded-lg transition duration-150 ease-in-out shadow-lg"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -107,7 +107,7 @@ const HomePage = () => {
         <h2 className="mt-10 text-2xl font-thin mb-2 text-light-blue">
           Search Results
         </h2>
-        <div className="bg-zinc-800 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
+        <div className="bg-zinc-700 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.map((track, index) => (
