@@ -174,7 +174,7 @@ const HomePage = () => {
                     <p>{track.album.name}</p>
                     <p>{track.album.release_date}</p>
                   </div>
-                  <div className='flex flex-col justify-center items-center'>
+                  <div className='flex flex-col'>
                     {/* {track.preview_url && (
                       <audio controls src={track.preview_url} className="mt-2">
                         Your browser does not support the audio element.
