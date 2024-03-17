@@ -1,20 +1,20 @@
-import React from 'react';
+import React from 'react'
 
 const LoginPage = () => {
-  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-  const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
+  const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI
 
   if (!clientId || !redirectUri) {
     console.error(
       'Spotify client ID or redirect URI is undefined. Check environment variables.',
-    );
+    )
   }
 
   const scopes = [
     'user-read-private',
     'user-read-email',
     // Add other scopes as needed
-  ];
+  ]
 
   const getSpotifyAuthUrl = () => {
     const queryParams = new URLSearchParams({
@@ -22,14 +22,16 @@ const LoginPage = () => {
       response_type: 'code',
       redirect_uri: redirectUri ?? '',
       scope: scopes.join(' '),
-    }).toString();
-    return `https://accounts.spotify.com/authorize?${queryParams}`;
-  };
+    }).toString()
+    return `https://accounts.spotify.com/authorize?${queryParams}`
+  }
 
   return (
     <div className="bg-radial-gradient-center min-h-screen flex flex-col items-center justify-center text-white">
       <div className="text-center">
-        <h1 className="text-4xl font-thin text-light-blue mb-6">Spotify Music Recommender</h1>
+        <h1 className="text-4xl font-thin text-light-blue mb-6">
+          Spotify Music Recommender
+        </h1>
         <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
         <a
           href={getSpotifyAuthUrl()}
@@ -39,7 +41,7 @@ const LoginPage = () => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

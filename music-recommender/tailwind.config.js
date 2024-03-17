@@ -6,18 +6,37 @@ module.exports = {
     extend: {
       colors: {
         'spotify-green': '#1DB954',
-        'light-blue': "#60A6EB",
-        'light-orange': "#F19A58"
+        'light-blue': '#60A6EB',
+        'light-orange': '#F19A58',
       },
       fontFamily: {
-        sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
-        mono: ['source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
+        sans: [
+          'Roboto',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          'Fira Sans',
+          'Droid Sans',
+          'Helvetica Neue',
+          'sans-serif',
+        ],
+        mono: [
+          'source-code-pro',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Courier New',
+          'monospace',
+        ],
       },
       backgroundImage: {
-        'radial-gradient-center': "radial-gradient(circle, #27272a 0%, #171717 100%)",
+        'radial-gradient-center':
+          'radial-gradient(circle, #27272a 0%, #171717 100%)',
       },
     },
   },
   plugins: [],
 }
-
