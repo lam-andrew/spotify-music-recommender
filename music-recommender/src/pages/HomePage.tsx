@@ -161,22 +161,29 @@ const HomePage = () => {
         {searchResults.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {searchResults.map((track, index) => (
-              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-col items-center text-center">
+              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center">
                 {track.album.images[0] && (
                   <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4" />
                 )}
-                <h3 className="text-lg font-bold">{track.name}</h3>
-                <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
-                <p>Album: {track.album.name}</p>
-                <p>Release Date: {track.album.release_date}</p>
-                {track.preview_url && (
-                  <audio controls src={track.preview_url} className="mt-2">
-                    Your browser does not support the audio element.
-                  </audio>
-                )}              
-                <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-spotify-green">
-                  Listen on Spotify
-                </a>
+                <div className='flex flex-col'>
+                  <h3 className="text-lg font-bold">{track.name}</h3>
+                  <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
+                </div>
+                <div className='flex flex-col'>
+                  <p>Album: {track.album.name}</p>
+                  <p>Release Date: {track.album.release_date}</p>
+                </div>
+                <div className='flex flex-col'>
+                  {track.preview_url && (
+                    <audio controls src={track.preview_url} className="mt-2">
+                      Your browser does not support the audio element.
+                    </audio>
+                  )}              
+                  <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-light-orange hover:underline mt-2">
+                    Listen on Spotify
+                  </a>
+                </div>
+                
               </div>
             ))}
           </div>
