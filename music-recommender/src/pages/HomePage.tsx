@@ -162,7 +162,7 @@ const HomePage = () => {
               {searchResults.map((track, index) => (
                 <div
                   key={index}
-                  className="bg-zinc-900 p-4 rounded-lg shadow flex justify-between text-center my-2"
+                  className="bg-zinc-900 p-4 rounded-lg shadow flex justify-between items-center text-center my-2"
                 >
                   {track.album.images[0] && (
                     <img
