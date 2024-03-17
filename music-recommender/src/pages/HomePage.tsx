@@ -1,14 +1,64 @@
 import React, { useState } from 'react'
 
-interface TrackObject {
-  album: {
-    images: Array<{ url: string; height?: number; width?: number }>
-    name: string
-  }
-  artists: Array<{ name: string }>
-  name: string
-  preview_url: string | null
+interface ExternalUrls {
+  spotify: string;
 }
+
+interface Image {
+  url: string;
+  height: number;
+  width: number;
+}
+
+interface Artist {
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  name: string;
+  type: string;
+  uri: string;
+}
+
+interface Album {
+  album_type: string;
+  available_markets: string[];
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  type: string;
+  uri: string;
+  artists: Artist[];
+}
+
+interface TrackObject {
+  album: Album;
+  artists: Artist[];
+  available_markets: string[];
+  disc_number: number;
+  duration_ms: number;
+  explicit: boolean;
+  external_ids: {
+    isrc: string;
+    ean?: string;
+    upc?: string;
+  };
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_playable?: boolean;
+  name: string;
+  popularity: number;
+  preview_url: string | null;
+  track_number: number;
+  type: string;
+  uri: string;
+  is_local: boolean;
+}
+
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -108,39 +158,31 @@ const HomePage = () => {
           Search Results
         </h2>
         <div className="bg-zinc-700 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
-          {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {searchResults.map((track, index) => (
-                <div
-                  key={index}
-                  className="bg-zinc-900 p-4 rounded-lg shadow flex flex-col items-center text-center"
-                >
-                  {track.album.images[0] && (
-                    <img
-                      src={track.album.images[0].url}
-                      alt="Album cover"
-                      className="w-3/4 h-auto mb-4"
-                    />
-                  )}
-                  <h3 className="text-lg font-bold text-spotify-green">
-                    {track.name}
-                  </h3>
-                  <p>
-                    Artist(s):{' '}
-                    {track.artists.map((artist) => artist.name).join(', ')}
-                  </p>
-                  <p>Album: {track.album.name}</p>
-                  {track.preview_url && (
-                    <audio controls src={track.preview_url} className="mt-2">
-                      Your browser does not support the audio element.
-                    </audio>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No results to display</p>
-          )}
+        {searchResults.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {searchResults.map((track, index) => (
+              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-col items-center text-center">
+                {track.album.images[0] && (
+                  <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4" />
+                )}
+                <h3 className="text-lg font-bold">{track.name}</h3>
+                <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
+                <p>Album: {track.album.name}</p>
+                <p>Release Date: {track.album.release_date}</p>
+                {track.preview_url && (
+                  <audio controls src={track.preview_url} className="mt-2">
+                    Your browser does not support the audio element.
+                  </audio>
+                )}              
+                <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-spotify-green">
+                  Listen on Spotify
+                </a>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No results to display</p>
+        )}
         </div>
       </div>
     </div>
