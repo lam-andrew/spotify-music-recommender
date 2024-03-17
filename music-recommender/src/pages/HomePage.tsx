@@ -1,64 +1,63 @@
 import React, { useState } from 'react'
 
 interface ExternalUrls {
-  spotify: string;
+  spotify: string
 }
 
 interface Image {
-  url: string;
-  height: number;
-  width: number;
+  url: string
+  height: number
+  width: number
 }
 
 interface Artist {
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  name: string;
-  type: string;
-  uri: string;
+  external_urls: ExternalUrls
+  href: string
+  id: string
+  name: string
+  type: string
+  uri: string
 }
 
 interface Album {
-  album_type: string;
-  available_markets: string[];
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  images: Image[];
-  name: string;
-  release_date: string;
-  release_date_precision: string;
-  type: string;
-  uri: string;
-  artists: Artist[];
+  album_type: string
+  available_markets: string[]
+  external_urls: ExternalUrls
+  href: string
+  id: string
+  images: Image[]
+  name: string
+  release_date: string
+  release_date_precision: string
+  type: string
+  uri: string
+  artists: Artist[]
 }
 
 interface TrackObject {
-  album: Album;
-  artists: Artist[];
-  available_markets: string[];
-  disc_number: number;
-  duration_ms: number;
-  explicit: boolean;
+  album: Album
+  artists: Artist[]
+  available_markets: string[]
+  disc_number: number
+  duration_ms: number
+  explicit: boolean
   external_ids: {
-    isrc: string;
-    ean?: string;
-    upc?: string;
-  };
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  is_playable?: boolean;
-  name: string;
-  popularity: number;
-  preview_url: string | null;
-  track_number: number;
-  type: string;
-  uri: string;
-  is_local: boolean;
+    isrc: string
+    ean?: string
+    upc?: string
+  }
+  external_urls: ExternalUrls
+  href: string
+  id: string
+  is_playable?: boolean
+  name: string
+  popularity: number
+  preview_url: string | null
+  track_number: number
+  type: string
+  uri: string
+  is_local: boolean
 }
-
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -158,39 +157,53 @@ const HomePage = () => {
           Search Results
         </h2>
         <div className="bg-zinc-700 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
-        {searchResults.length > 0 ? (
-          <div className="flex flex-col">
-            {searchResults.map((track, index) => (
-              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center my-2">
-                {track.album.images[0] && (
-                  <img src={track.album.images[0].url} alt="Album cover" className="flex items-center w-1/6 h-auto mb-4 mr-4" />
-                )}
-                <div className='flex flex-row justify-between'>
-                  <div className='flex flex-col'>
-                    <h3 className="text-lg font-bold">{track.name}</h3>
-                    <p>{track.artists.map(artist => artist.name).join(', ')}</p>
-                  </div>
-                  <div className='flex flex-col'>
-                    <p>{track.album.name}</p>
-                    <p>{track.album.release_date}</p>
-                  </div>
-                  <div className='flex flex-col'>
-                    {/* {track.preview_url && (
+          {searchResults.length > 0 ? (
+            <div className="flex flex-col">
+              {searchResults.map((track, index) => (
+                <div
+                  key={index}
+                  className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center my-2"
+                >
+                  {track.album.images[0] && (
+                    <img
+                      src={track.album.images[0].url}
+                      alt="Album cover"
+                      className="flex w-1/6 h-auto mb-4 mr-4"
+                    />
+                  )}
+                  <div className="flex justify-between">
+                    <div className="flex flex-col">
+                      <h3 className="text-lg font-bold">{track.name}</h3>
+                      <p>
+                        {track.artists.map((artist) => artist.name).join(', ')}
+                      </p>
+                    </div>
+                    <div className="flex flex-col">
+                      <p>{track.album.name}</p>
+                      <p>{track.album.release_date}</p>
+                    </div>
+                    <div className="flex flex-col">
+                      {/* {track.preview_url && (
                       <audio controls src={track.preview_url} className="mt-2">
                         Your browser does not support the audio element.
                       </audio>
                     )}*/}
-                    <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-light-orange hover:underline mt-2 w-1/2 h-1/2">
-                      Listen on Spotify
-                    </a>
+                      <a
+                        href={track.external_urls.spotify}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-light-orange hover:underline mt-2 w-1/2 h-1/2"
+                      >
+                        Listen on Spotify
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No results to display</p>
-        )}
+              ))}
+            </div>
+          ) : (
+            <p>No results to display</p>
+          )}
         </div>
       </div>
     </div>
