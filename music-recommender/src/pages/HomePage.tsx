@@ -159,11 +159,11 @@ const HomePage = () => {
         </h2>
         <div className="bg-zinc-700 p-6 rounded-lg shadow-lg max-h-96 overflow-auto w-full">
         {searchResults.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-col">
             {searchResults.map((track, index) => (
               <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center">
                 {track.album.images[0] && (
-                  <img src={track.album.images[0].url} alt="Album cover" className="w-3/4 h-auto mb-4" />
+                  <img src={track.album.images[0].url} alt="Album cover" className="w-1/4 h-auto mb-4" />
                 )}
                 <div className='flex flex-col'>
                   <h3 className="text-lg font-bold">{track.name}</h3>
