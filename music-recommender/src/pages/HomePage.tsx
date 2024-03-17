@@ -161,17 +161,17 @@ const HomePage = () => {
         {searchResults.length > 0 ? (
           <div className="flex flex-col">
             {searchResults.map((track, index) => (
-              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center">
+              <div key={index} className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center my-2">
                 {track.album.images[0] && (
                   <img src={track.album.images[0].url} alt="Album cover" className="w-1/4 h-auto mb-4" />
                 )}
                 <div className='flex flex-col'>
                   <h3 className="text-lg font-bold">{track.name}</h3>
-                  <p>Artist(s): {track.artists.map(artist => artist.name).join(', ')}</p>
+                  <p>{track.artists.map(artist => artist.name).join(', ')}</p>
                 </div>
                 <div className='flex flex-col'>
                   <p>Album: {track.album.name}</p>
-                  <p>Release Date: {track.album.release_date}</p>
+                  <p>{track.album.release_date}</p>
                 </div>
                 <div className='flex flex-col'>
                   {track.preview_url && (
@@ -179,7 +179,7 @@ const HomePage = () => {
                       Your browser does not support the audio element.
                     </audio>
                   )}              
-                  <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-light-orange hover:underline mt-2">
+                  <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="text-light-orange hover:underline mt-2 w-1/2 h-1/2">
                     Listen on Spotify
                   </a>
                 </div>
