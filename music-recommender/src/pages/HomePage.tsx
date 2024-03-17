@@ -162,7 +162,7 @@ const HomePage = () => {
               {searchResults.map((track, index) => (
                 <div
                   key={index}
-                  className="bg-zinc-900 p-4 rounded-lg shadow flex flex-row items-center text-center my-2"
+                  className="bg-zinc-900 p-4 rounded-lg shadow flex justify-between text-center my-2"
                 >
                   {track.album.images[0] && (
                     <img
@@ -171,32 +171,30 @@ const HomePage = () => {
                       className="flex w-1/6 h-auto mb-4 mr-4"
                     />
                   )}
-                  <div className="flex justify-between">
-                    <div className="flex flex-col">
-                      <h3 className="text-lg font-bold">{track.name}</h3>
-                      <p>
-                        {track.artists.map((artist) => artist.name).join(', ')}
-                      </p>
-                    </div>
-                    <div className="flex flex-col">
-                      <p>{track.album.name}</p>
-                      <p>{track.album.release_date}</p>
-                    </div>
-                    <div className="flex flex-col">
-                      {/* {track.preview_url && (
-                      <audio controls src={track.preview_url} className="mt-2">
-                        Your browser does not support the audio element.
-                      </audio>
+                  <div className="flex flex-col">
+                    <h3 className="text-lg font-bold">{track.name}</h3>
+                    <p>
+                      {track.artists.map((artist) => artist.name).join(', ')}
+                    </p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p>{track.album.name}</p>
+                    <p>{track.album.release_date}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    {/* {track.preview_url && (
+                    <audio controls src={track.preview_url} className="mt-2">
+                      Your browser does not support the audio element.
+                    </audio>
                     )}*/}
-                      <a
-                        href={track.external_urls.spotify}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-light-orange hover:underline mt-2 w-1/2 h-1/2"
-                      >
-                        Listen on Spotify
-                      </a>
-                    </div>
+                    <a
+                      href={track.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-light-orange hover:underline mt-2 w-1/2 h-1/2"
+                    >
+                      Listen on Spotify
+                    </a>
                   </div>
                 </div>
               ))}
