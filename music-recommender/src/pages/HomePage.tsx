@@ -168,7 +168,7 @@ const HomePage = () => {
                     <img
                       src={track.album.images[0].url}
                       alt="Album cover"
-                      className="flex w-1/6 h-auto mb-4 mr-4"
+                      className="flex w-1/12 h-auto mb-4 mr-4"
                     />
                   )}
                   <div className="flex flex-col">
