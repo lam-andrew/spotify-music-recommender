@@ -12,6 +12,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
 import CallbackPage from './pages/CallbackPage'
 import ProfilePage from './pages/ProfilePage'
+import RecommendationPage from './pages/RecommendationPage'
 
 const AppWrapper = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/callback" element={<CallbackPage />} />
+        <Route path="/recommendations" element={<RecommendationPage />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/profilepage" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
