@@ -99,7 +99,7 @@ const HomePage = () => {
   }
 
   return (
-    <div>
+    <div className='flex items-center justify-center'>
       <div>Spotify like HomePage with Images and Links</div>
       <div>e.g. Popular Songs, Albums, etc.</div>
     </div>
