@@ -11,6 +11,9 @@ const NavigationBar = () => {
           <Link to="/homepage" className="px-4 py-2 hover:bg-zinc-800 rounded">
             Home
           </Link>
+          <Link to="/recommendations" className="px-4 py-2 hover:bg-zinc-800 rounded">
+            Recommendations
+          </Link>
           <Link
             to="/profilepage"
             className="px-4 py-2 hover:bg-zinc-800 rounded"
