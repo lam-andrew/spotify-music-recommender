@@ -99,9 +99,9 @@ const HomePage = () => {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <div className='flex'>Spotify like HomePage with Images and Links</div>
-      <div className='flex'>e.g. Popular Songs, Albums, etc.</div>
+    <div className="flex flex-col justify-center items-center h-screen w-full">
+      <div>Spotify like HomePage with Images and Links</div>
+      <div>e.g. Popular Songs, Albums, etc.</div>
     </div>
   )
 }
