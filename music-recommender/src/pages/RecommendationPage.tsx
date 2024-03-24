@@ -105,9 +105,9 @@ const RecommendationPage = () => {
         style={{ minHeight: '80vh' }}
       >
         <h1 className="text-4xl font-thin mb-6 text-light-blue">
-          Welcome to Spotify Music Recommender
+          Spotify Music Recommender
         </h1>
-        <p className="mb-8 text-lg">Discover music tailored to your taste.</p>
+        <p className="mb-8 text-lg">Search and Select a Song to get Recommentations!</p>
         <div className="bg-zinc-700 p-6 rounded-lg shadow-lg w-full">
           <form
             onSubmit={handleSearchSubmit}

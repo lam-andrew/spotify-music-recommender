@@ -102,6 +102,12 @@ const HomePage = () => {
     <div className="min-h-screen bg-radial-gradient-center text-white flex flex-col justify-center items-center p-8">
       <div>Spotify like HomePage with Images and Links</div>
       <div>e.g. Popular Songs, Albums, etc.</div>
+      <div className='mt-4'>
+        Coming Soon
+        <span>- Get Featured Playlists</span>
+        <span>- Get Category's Playlists</span>
+        <span>  - Get Playlist Cover Image</span>
+      </div>
     </div>
   )
 }
